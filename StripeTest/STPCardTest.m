@@ -281,13 +281,6 @@
     XCTAssertFalse([card validateCvc:&cvc error:&error], @"Too long CVC should not validate");
 }
 
-- (void)testThreeDigitCVCDoesNotValidateForAmexCard {
-    NSError *error = nil;
-    NSString *cvc = @"123";
-    card.number = @"3412123412341234";
-    XCTAssertFalse([card validateCvc:&cvc error:&error], @"Three digit CVC is too short for Amex card");
-}
-
 - (void)testFourDigitCVCValidatesForAmexCard {
     NSError *error = nil;
     NSString *cvc = @"1234";

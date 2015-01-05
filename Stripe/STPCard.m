@@ -279,8 +279,8 @@
     }
     NSString *ioValueString = [(NSString *)*ioValue stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *cardType = [self type];
-    BOOL validLength = ((cardType == nil && [ioValueString length] >= 3 && [ioValueString length] <= 4) ||
-                        ([cardType isEqualToString:@"American Express"] && [ioValueString length] == 4) ||
+    BOOL cardIsUnknownOrAmex = ((cardType == nil) || [cardType isEqualToString:@"American Express"]);
+    BOOL validLength = ((cardIsUnknownOrAmex && [ioValueString length] >= 3 && [ioValueString length] <= 4) ||
                         (![cardType isEqualToString:@"American Express"] && [ioValueString length] == 3));
 
     if (![STPCard isNumericOnlyString:ioValueString] || !validLength) {
